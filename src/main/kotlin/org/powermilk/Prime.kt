@@ -12,20 +12,20 @@ fun Int.isPrime() = when (this) {
 }
 
 /**
- * Function extension to generating array with prime numbers for 2 to n ([this]).
+ * Function extension to a generating array with prime numbers for 2 to n ([this]).
  *
  * @return array with prime numbers
  */
 fun Int.generatePrimes() = (2..this).filter { it.isPrime() }.toIntArray()
 
 /**
- *  Function extension to filter non-prime numbers from array ([this]).
+ *  Function extension to filter non-prime numbers from an array ([this]).
  *
  *  @return filtered array with non-prime numbers.
  */
-fun IntArray.filterNonPrimes() = filter { it != 0 && it.isPrime() }.toIntArray()
+fun IntArray.filterNonPrimes() = filter { it > 0 && it.isPrime() }.toIntArray()
 
 /**
  * Function extension to check if all numbers in array are prime numbers.
  */
-fun IntArray.areAllPrimes() = isNotEmpty() && all { it != 0 && it.isPrime() }
+fun IntArray.areAllPrimes() = isNotEmpty() && all { it > 0 && it.isPrime() }

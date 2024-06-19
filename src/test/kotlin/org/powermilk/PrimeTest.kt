@@ -11,7 +11,7 @@ import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class PrimeUnitTest {
+class PrimeTest {
     private val mapIntToArray = mapOf(
         0 to intArrayOf(), 1 to intArrayOf(), 2 to intArrayOf(2), 3 to intArrayOf(2, 3), 4 to intArrayOf(2, 3),
         5 to intArrayOf(2, 3, 5)
