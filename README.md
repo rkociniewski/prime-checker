@@ -1,61 +1,95 @@
-# MostFrequentElement
+# Prime Utilities in Kotlin
 
-[![version](https://img.shields.io/badge/version-1.0.0-yellow.svg)](https://semver.org)
+[![version](https://img.shields.io/badge/version-1.0.1-yellow.svg)](https://semver.org)
 [![Awesome Kotlin Badge](https://kotlin.link/awesome-kotlin.svg)](https://github.com/KotlinBy/awesome-kotlin)
+[![Build](https://github.com/rkociniewski/prime-checker/actions/workflows/main.yml/badge.svg)](https://github.com/rkociniewski/prime-checker/actions/workflows/main.yml)
+[![codecov](https://codecov.io/gh/rkociniewski/prime-checker/branch/main/graph/badge.svg)](https://codecov.io/gh/rkociniewski/prime-checker)
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.1.21-blueviolet?logo=kotlin)](https://kotlinlang.org/)
+[![Gradle](https://img.shields.io/badge/Gradle-8.14.1-blue?logo=gradle)](https://gradle.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-greem.svg)](https://opensource.org/licenses/MIT)
 
-Application for prime numbers, e.g. check if number is prime number or filter array from prime numbers.
+A small Kotlin utility library for working with prime numbers. Includes efficient and idiomatic functions for:
 
-## Getting started
+- Checking if a number is prime
+- Generating a list of primes up to a given value
+- Filtering prime numbers from an array
+- Checking if all elements in an array are prime
 
-First, you need to ensure you have these applications:
+---
 
-- [GIT](https://git-scm.com/) — GIT isn't necessary, but is better to have installed
-- IDE (I prefer [IntelliJ IDEA](https://www.jetbrains.com/idea/)) — It isn't necessary, but in IDE you can look up code
-  quicker and nicer.
-- [Gradle](https://gradle.org/) - necessary to build a project, sometimes IDE have it pre-installed.
-- [Java JDK](https://www.oracle.com/java/technologies/downloads/#java11) - This one is mandatory ;)
+## 🔧 Features
 
-You can download a project in two ways:
+### `Int.isPrime(): Boolean`
 
-- By GIT, typing in console this command:
+Checks whether an integer is a prime number.
 
- ```
-git clone git@gitlab.com:powermilk-default/prime.git
- ```
+```kotlin
+5.isPrime() // true
+10.isPrime() // false
+````
 
-If you decide to use this one, I assume you know the basics of GIT
+> ❗ Throws `ArithmeticException` if the number is zero or negative.
 
-- By download ZIP file. You need to just
-  download [this file](https://gitlab.com/powermilk-default/prime/-/archive/master/prime.zip)
-  .
+---
 
-## Prerequisites
+### `generatePrimes(n: Int): IntArray`
 
-You can build this project with [Gradle](https://gradle.org/), so dependencies are automatically downloaded and
-imported, but for your information I listed what technologies are used in this repository:
+Returns an array of all prime numbers from `2` to `n` (inclusive).
 
-Code:
+```kotlin
+generatePrimes(10) // [2, 3, 5, 7]
+```
 
-- [Java JDK](https://www.java.com/pl/download/) - If you want to develop this application, you will
-  need [JDK](https://www.oracle.com/java/technologies/downloads/#java11).
-  Java is a programming language what I used to write this program.
+---
 
-Testing
+### `IntArray.filterNonPrimes(): IntArray`
 
-- [JUnit 5](https://junit.org/junit5) - The testing Framework.
+Filters all non-prime or invalid values (e.g. 0, 1, negatives) from an array.
 
-## Running application
+```kotlin
+intArrayOf(2, 3, 4, 5, 6).filterNonPrimes() // [2, 3, 5]
+```
 
-This application just presents a solution to some issue, and it can be run itself. It doesn't have `main()` method.
+---
 
-## Running the tests
+### `IntArray.areAllPrimes(): Boolean`
 
-I use Gradle, so you can run test with this command:
+Checks if all values in the array are prime.
+
+```kotlin
+intArrayOf(2, 3, 5).areAllPrimes() // true
+intArrayOf(2, 4, 5).areAllPrimes() // false
+```
+
+---
+
+## ✅ Test Coverage
+
+Tests are written with **JUnit 5** and include:
+
+* Prime detection
+* Negative and edge cases
+* Array filtering
+* Prime generation
+* Empty input checks
+
+You can find them in `src/test/kotlin/rk/powermilk/PrimeTest.kt`.
+
+---
+
+## 📦 Project Structure
 
 ```
-gradle test
+rk.powermilk
+├── Prime.kt           // Prime-related utility functions
+└── PrimeTest.kt       // Unit tests
 ```
+
+---
+
+## License
+
+This project is licensed under the MIT License.
 
 ## Built With
 
@@ -67,4 +101,4 @@ We use [SemVer](http://semver.org/) for versioning.
 
 ## Authors
 
-* **Rafał Kociniewski** - [PowerMilk](https://gitlab.com/rafal.kociniewski)
+* **Rafał Kociniewski** - [PowerMilk](https://github.com/rkociniewski)
