@@ -11,10 +11,10 @@ group = "rk.powermilk"
 /**
  * project version
  */
-version = "1.0.10"
+version = "1.0.11"
 
-val javaVersion = JavaVersion.VERSION_21
-val jvmTargetVersion = JvmTarget.JVM_21.target
+val javaVersion = JavaVersion.VERSION_22
+val jvmTargetVersion = JvmTarget.JVM_22.target
 
 plugins {
     alias(libs.plugins.kotlin.jvm)
