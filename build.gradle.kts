@@ -11,14 +11,13 @@ group = "rk.powermilk"
 /**
  * project version
  */
-version = "1.0.12"
+version = "1.0.13"
 
-val javaVersion = JavaVersion.VERSION_21
-val jvmTargetVersion = JvmTarget.JVM_21.target
+val javaVersion: JavaVersion = JavaVersion.VERSION_21
+val jvmTargetVersion = JvmTarget.JVM_21
 
 plugins {
     alias(libs.plugins.kotlin.jvm)
-    alias(libs.plugins.test.logger)
     alias(libs.plugins.dokka)
     alias(libs.plugins.detekt)
     jacoco
@@ -33,25 +32,16 @@ java {
     targetCompatibility = javaVersion
 }
 
-// dependencies
 dependencies {
     detektPlugins(libs.detekt)
     testImplementation(libs.junit.params)
-    testImplementation(kotlin("test"))
-}
-
-testlogger {
-    showStackTraces = false
-    showFullStackTraces = false
-    showCauses = false
-    slowThreshold = 10000
-    showSimpleNames = true
+    testImplementation(libs.kotlin.test)
 }
 
 kotlin {
     compilerOptions {
-        verbose = true // enable verbose logging output
-        jvmTarget.set(JvmTarget.fromTarget(jvmTargetVersion)) // target version of the generated JVM bytecode
+        verbose = true
+        jvmTarget.set(jvmTargetVersion)
     }
 }
 
@@ -63,7 +53,7 @@ detekt {
 
 dokka {
     dokkaSourceSets.main {
-        jdkVersion.set(java.targetCompatibility.toString().toInt()) // Used for linking to JDK documentation
+        jdkVersion.set(javaVersion.toString().toInt())
         skipDeprecated.set(false)
     }
 
@@ -89,7 +79,6 @@ tasks.test {
     useJUnitPlatform()
     finalizedBy(tasks.jacocoTestReport)
 }
-
 
 tasks.jacocoTestReport {
     dependsOn(tasks.test)
@@ -135,9 +124,9 @@ tasks.register("coverage") {
 }
 
 tasks.withType<Detekt>().configureEach {
-    jvmTarget = jvmTargetVersion
+    jvmTarget = jvmTargetVersion.target
 }
 
 tasks.withType<DetektCreateBaselineTask>().configureEach {
-    jvmTarget = jvmTargetVersion
+    jvmTarget = jvmTargetVersion.target
 }
